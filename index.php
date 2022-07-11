@@ -1,27 +1,14 @@
-<?php
-
-try {
-    $conn = new PDO("mysql:host=localhost;dbname=lawsuit", "root", "root");
-}
-catch (PDOException $e) {
-    echo $e->getMessage();
-}
-
-$lawyerName = isset($_POST['lawyer']) ? $_POST['lawyer'] : null;
-$month = isset($_POST['month']) ? $_POST['month'] : null;
-
-
-?>
+<?php require_once('db.php')?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Lawyers</title>
 </head>
 
 <body>
@@ -73,51 +60,7 @@ $month = isset($_POST['month']) ? $_POST['month'] : null;
                     <td>Размер иска, (руб.)</td>
                 </tr>
                 
-                <?php
-
-                switch($lawyerName) {
-                    case 'Andreeva' : 
-                        $lawyerName = 'Андреева';
-                        break;
-                    
-                    case 'Istomina' : 
-                        break;
-                    
-                }
-
-                $category = [];
-                $size = [];
-                
-                $sql = "SELECT * FROM `law`";
-
-                $sql = is_null($lawyerName) && is_null($month) ? "SELECT * FROM `law`  ORDER BY `law`.`Категория` ASC" : "SELECT * FROM `law` WHERE `law`.`Юрист` = '$lawyerName' AND MONTH(`Дата начала`) = '$month'  ORDER BY `law`.`Категория` ASC";
-
-                if($result = $conn->query($sql)) {
-                    while($row = $result->fetch()) {
-                        array_push($category, $row[1]);
-                        array_push($size, $row[4]);
-
-                        ?>
-
-                        <tr>
-                            <td><?=$row[0]?></td>
-                            <td><?=$row[1]?></td>
-                            <td><?=$row[2]?></td>
-                            <td><?=$row[3]?></td>
-                            <td><?=$row[4]?></td>
-                        </tr>
-
-                        <?php
-
-                    }
-
-                }
-
-                $theMostFrequentCategory = array_count_values($category);
-                arsort($theMostFrequentCategory);
-
-                ?>
-
+                <?php require_once('table.php')?>
 
             </table>
 
