@@ -1,0 +1,57 @@
+body {
+    background-color: azure;
+}
+
+table, tr, td {
+    border: 1px solid blue;
+    border-collapse: collapse;
+
+    padding: 40px;
+
+}
+
+label {
+    display: block;
+}
+
+button {
+    display: block;
+    margin: auto;
+}
+
+h1, h3 {
+    text-align: center;
+    font-weight: 500;
+    background-color: rgb(0, 197, 0);
+}
+
+.page-content {
+    display: flex;
+}
+
+.page-form {
+    width: 300px;
+    background-color: rgb(179, 179, 179);
+    margin-right: 30px;
+}
+
+.form-content {
+    padding: 10px;
+    margin: 30px;
+    text-align: right;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(0, 197, 0);
+    color: #fff;
+}
+
+.page-table {
+    padding: 30px;
+    flex-grow: 100;
+
+    background-color: #fff;
+
+}
+
+.additional-func {
+    color: rgb(0, 197, 0);
+}
